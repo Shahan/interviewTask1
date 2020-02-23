@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.5"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'io.qameta.allure'
+
+group 'com.iq-option.swapi.tests'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+ext {
+    allureVersion = '2.6.0'
+    restAssuredVersion = '4.2.0'
+    testngVersion = '7.0.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useTestNG()
+    scanForTestClasses = false
+}
+
+task smokeTest(type: Test) {
+    group "verification"
+    useTestNG {
+        includeGroups  'smoke'
+    }
+    scanForTestClasses false
+}
+
+dependencies {
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: restAssuredVersion
+    testCompile group: 'org.testng', name: 'testng', version: testngVersion
+    testCompile group: 'io.qameta.allure', name: 'allure-testng', version: allureVersion
+    testCompile group: 'io.qameta.allure', name: 'allure-rest-assured', version: allureVersion
+}
+
+allure {
+    autoconfigure = true
+    version = allureVersion
+    useTestNG {
+        version = allureVersion
+    }
+}
