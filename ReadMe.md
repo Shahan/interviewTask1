@@ -28,10 +28,19 @@ Develop several tests for The Star Wars API project (https://swapi.co).
 
 # Implemenataion details
 ### Architecture
-This project follows KISS principle (https://en.wikipedia.org/wiki/KISS_principle). So there is only one java class that includes all 3 tests. Hence no auxiliary DTOs, services, etc.
+This project consists of 3 layers:
+- `Tests layer`. Contains classes with executable tests.
+- `Service layer`. Contains steps implementations that are used by steps. Utils/helper classes are also to be presented there.
+- `Domain layer`. DTOs and POJOs to be there.
+
+Auxiliary test data is located in `resources/data`.
 
 ### Dependencies
-**RESTAssured** for rapid tests-for-REST development
+**RESTAssured** for rapid tests-for-REST development.
+
+**Lombok** to replace boiler-plate ``getter/setters/constructors/toString`` methods with annotations.
+
+**Gson** for JSON (de)serialization. 
 
 ### Reporting
 Allure is supported here. That's why there are so many eye-catching annotations :)
@@ -46,11 +55,11 @@ The following data is attached to tests reports for the convenience:
 - REST requests
 - REST resposes
 - Setup data: base API URL and base API path
+- Some objects that are provided to particular steps as parameters.
 
 ### Configuration
-There are 2 configuration properties defined in `src/test/resources/test.properties` file:
+There is 1 configuration property defined in `src/test/resources/test.properties` file:
 ```
-baseApiUrl=https://swapi.co
-baseApiPath=/api
+baseApiUrl=https://swapi.co/api
 ```
-They both together build a prefix for all requests (`baseApiUrl` + `baseApiPath`)
+`baseApiUrl` is a prefix for all REST requests. 

@@ -18,6 +18,8 @@ ext {
     allureVersion = '2.6.0'
     restAssuredVersion = '4.2.0'
     testngVersion = '7.0.0'
+    lombokVersion = '1.18.8'
+    gsonVersion = '2.8.6'
 }
 
 repositories {
@@ -42,6 +44,11 @@ dependencies {
     testCompile group: 'org.testng', name: 'testng', version: testngVersion
     testCompile group: 'io.qameta.allure', name: 'allure-testng', version: allureVersion
     testCompile group: 'io.qameta.allure', name: 'allure-rest-assured', version: allureVersion
+    testCompile group: 'com.google.code.gson', name: 'gson', version: gsonVersion
+    testCompile group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+
 }
 
 allure {
